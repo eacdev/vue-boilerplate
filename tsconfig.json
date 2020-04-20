@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": false,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "target": "ES2019",
+    "experimentalDecorators": true,
+    "esModuleInterop": true
+  }
+}
