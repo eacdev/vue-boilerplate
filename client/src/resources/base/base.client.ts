@@ -18,7 +18,10 @@ export default class BaseClient {
     return this.api.get(url);
   }
 
-  public post<T = object, R = AxiosResponse<T>>(url = '', data?: object): Promise<R> {
+  public post<T = object, R = AxiosResponse<T>>(
+    url = '',
+    data?: object
+  ): Promise<R> {
     if (data) {
       return this.api.post(url, data);
     }

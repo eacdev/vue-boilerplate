@@ -16,27 +16,27 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue } from 'vue-property-decorator';
 
-import SocketIOClient from "socket.io-client";
+import SocketIOClient from 'socket.io-client';
 
-import ServerClient from "../resources/server/server.client";
-import MessageClient from "../resources/message/message.client";
+import ServerClient from '../resources/server/server.client';
+import MessageClient from '../resources/message/message.client';
 
-import Chat from "./chat/Chat.vue";
-import UserList from "./chat/UserList.vue";
-import ServerList from "./chat/ServerList.vue";
+import Chat from './chat/Chat.vue';
+import UserList from './chat/UserList.vue';
+import ServerList from './chat/ServerList.vue';
 
-import User from "../resources/user/user.model";
-import Server from "../resources/server/server.model";
-import Message from "../resources/message/message.model";
+import User from '../resources/user/user.model';
+import Server from '../resources/server/server.model';
+import Message from '../resources/message/message.model';
 
 @Component({
   components: {
     Chat,
     UserList,
-    ServerList,
-  },
+    ServerList
+  }
 })
 export default class Home extends Vue {
   ServerClient!: ServerClient;
@@ -55,9 +55,9 @@ export default class Home extends Vue {
 
   async joinServer(server: Server) {
     // todo: Improvement, maybe server name isn't the best way to identify rooms
-    this.$store.commit("setCurrentServer", server);
+    this.$store.commit('setCurrentServer', server);
 
-    this.$socket.emit("joinRoom", server.name);
+    this.$socket.emit('joinRoom', server.name);
 
     this.usersTyping = [];
 
@@ -75,39 +75,37 @@ export default class Home extends Vue {
 
     this.$socket.connect();
 
-    this.$socket.on("newMessage", (message: Message) => {
+    this.$socket.on('newMessage', (message: Message) => {
       this.messages.push(message);
     });
 
-    this.$socket.on("connectedUsers", (users: User[]) => {
+    this.$socket.on('connectedUsers', (users: User[]) => {
       this.users = users;
     });
 
-    this.$socket.on("userJoined", (user: User) => {
+    this.$socket.on('userJoined', (user: User) => {
       this.users.push(user);
     });
 
-    this.$socket.on("userLeft", (user: User) => {
+    this.$socket.on('userLeft', (user: User) => {
       const users = this.users.filter(
         (connectedUser: User) => connectedUser.id !== user.id
       );
       this.users = users;
     });
 
-    this.$socket.on("userTypingEnded", (user: User) => {
-      const usersTyping = this.usersTyping.filter(
-        (elem) => elem.id !== user.id
-      );
+    this.$socket.on('userTypingEnded', (user: User) => {
+      const usersTyping = this.usersTyping.filter(elem => elem.id !== user.id);
       this.usersTyping = usersTyping;
     });
 
-    this.$socket.on("userTypingStarted", (user: User) => {
-      if (!this.usersTyping.find((elem) => elem.id === user.id)) {
+    this.$socket.on('userTypingStarted', (user: User) => {
+      if (!this.usersTyping.find(elem => elem.id === user.id)) {
         this.usersTyping.push(user);
       }
     });
 
-    this.$socket.on("error", (error: string) => {
+    this.$socket.on('error', (error: string) => {
       console.log(error);
     });
 

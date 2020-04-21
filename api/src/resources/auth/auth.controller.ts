@@ -10,7 +10,11 @@ export const me = async (req: Request, res: Response) => {
   }
 };
 
-export const register = async (req: Request, res: Response, next: NextFunction) => {
+export const register = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const user: User = await User.create(req.body);
     req.session.user = user;
@@ -20,7 +24,11 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
   }
 };
 
-export const login = async (req: Request, res: Response, next: NextFunction) => {
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // todo: Make user object more complete by including the servers a user is in
     // That means also updating the session whenever a user joins a new server or other actions.
@@ -48,7 +56,11 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
   }
 };
 
-export const logout = async (req: Request, res: Response, next: NextFunction) => {
+export const logout = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   req.session.destroy(e => {
     next(e);
   });

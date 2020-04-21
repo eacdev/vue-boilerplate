@@ -1,5 +1,5 @@
-import { VueConstructor } from "vue";
-import SocketIO from "socket.io-client";
+import { VueConstructor } from 'vue';
+import SocketIO from 'socket.io-client';
 
 export default class VueSocketIO {
   io: SocketIOClient.Socket;
@@ -15,10 +15,10 @@ export default class VueSocketIO {
 
   // eslint-disable-next-line class-methods-use-this
   connect(): SocketIOClient.Socket {
-    const io = SocketIO("http://localhost:8080", {
+    const io = SocketIO('http://localhost:8080', {
       autoConnect: false,
       reconnection: false,
-      upgrade: false,
+      upgrade: false
     });
 
     return io;

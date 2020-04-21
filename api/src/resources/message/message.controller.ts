@@ -3,7 +3,11 @@ import Server from '../server/server.model';
 import Message from './message.model';
 import User from '../user/user.model';
 
-export const index = async (req: Request, res: Response, next: NextFunction) => {
+export const index = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   // todo: Add permission check? + validation
   try {
     const serverMessages: Message[] = await Message.findAll({

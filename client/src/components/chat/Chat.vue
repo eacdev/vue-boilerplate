@@ -23,12 +23,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
-import { debounce } from "lodash";
+import { debounce } from 'lodash';
 
-import User from "../../resources/user/user.model";
-import Message from "../../resources/message/message.model";
+import User from '../../resources/user/user.model';
+import Message from '../../resources/message/message.model';
 
 @Component
 export default class Chat extends Vue {
@@ -36,29 +36,29 @@ export default class Chat extends Vue {
 
   @Prop({
     type: Array,
-    default: () => [{}],
+    default: () => [{}]
   })
   private messages!: Message[];
 
   @Prop({
     type: Array,
-    default: () => [{}],
+    default: () => [{}]
   })
   private usersTyping!: User[];
 
-  chatInputMessage = "";
+  chatInputMessage = '';
 
   get usersTypingNotification() {
-    if (this.usersTyping.length === 0) return "";
-    return `${this.usersTyping.map((user) => user.username).join(", ")} ${
-      this.usersTyping.length === 1 ? "is" : "are"
+    if (this.usersTyping.length === 0) return '';
+    return `${this.usersTyping.map(user => user.username).join(', ')} ${
+      this.usersTyping.length === 1 ? 'is' : 'are'
     } typing...`;
   }
 
   addMessage() {
     // todo: Improvement, maybe server name isn't the best way to identify rooms
     this.$socket.emit(
-      "newMessage",
+      'newMessage',
       this.$store.state.currentServer.id,
       this.chatInputMessage,
       this.$store.state.currentServer.name
@@ -66,7 +66,7 @@ export default class Chat extends Vue {
 
     console.log(this.$store.state);
 
-    this.chatInputMessage = "";
+    this.chatInputMessage = '';
   }
 
   handleKeypress() {
@@ -77,7 +77,7 @@ export default class Chat extends Vue {
   debounceTypingStarted = debounce(
     function(this: any) {
       this.$socket.emit(
-        "userTypingStarted",
+        'userTypingStarted',
         this.$store.state.currentServer.name
       );
     },
@@ -88,7 +88,7 @@ export default class Chat extends Vue {
   debounceTypingEnded = debounce(
     function(this: any) {
       this.$socket.emit(
-        "userTypingEnded",
+        'userTypingEnded',
         this.$store.state.currentServer.name
       );
     },

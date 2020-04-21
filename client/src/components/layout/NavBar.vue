@@ -28,11 +28,11 @@
 </template>
 
 <script lang="ts">
-import Store from "vuex";
-import Router from "vue-router";
-import { Component, Vue } from "vue-property-decorator";
+import Store from 'vuex';
+import Router from 'vue-router';
+import { Component, Vue } from 'vue-property-decorator';
 
-import AuthClient from "../../resources/auth/auth.client";
+import AuthClient from '../../resources/auth/auth.client';
 
 @Component
 export default class NavBar extends Vue {
@@ -42,11 +42,11 @@ export default class NavBar extends Vue {
     try {
       await this.authClient.logout();
 
-      this.$store.commit("setCurrentUser", undefined);
+      this.$store.commit('setCurrentUser', undefined);
 
-      this.$router.push({ name: "login" });
+      this.$router.push({ name: 'login' });
     } catch (e) {
-      console.log("There was an error logging you out.");
+      console.log('There was an error logging you out.');
     }
   }
 

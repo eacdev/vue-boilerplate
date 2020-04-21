@@ -4,7 +4,11 @@
       <p class="mb-1 text-base font-bold">Users</p>
     </div>
     <ul>
-      <li v-for="user of users" :key="user.id" class="cursor-pointer hover:text-indigo">
+      <li
+        v-for="user of users"
+        :key="user.id"
+        class="cursor-pointer hover:text-indigo"
+      >
         <span class="indicator-online"></span> {{ user.username }}
       </li>
     </ul>

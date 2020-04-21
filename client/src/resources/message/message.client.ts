@@ -1,7 +1,7 @@
-import { AxiosRequestConfig, AxiosResponse } from "axios";
-import BaseClient from "../base/base.client";
-import Server from "../server/server.model";
-import Message from "./message.model";
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import BaseClient from '../base/base.client';
+import Server from '../server/server.model';
+import Message from './message.model';
 
 export default class MessageClient extends BaseClient {
   /**
@@ -12,9 +12,9 @@ export default class MessageClient extends BaseClient {
       baseURL: `http://localhost:8080/servers`,
       withCredentials: true,
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
     };
     super(options);
   }

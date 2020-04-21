@@ -13,7 +13,11 @@ const handleIO = (io: SocketIO.Server) => (socket: SocketInterface) => {
    * @param text The data to send.
    * @param roomName Name of the room to send the message to.
    */
-  const newMessageEvent = async (serverId: number, text: string, roomName: string) => {
+  const newMessageEvent = async (
+    serverId: number,
+    text: string,
+    roomName: string
+  ) => {
     let message;
     try {
       message = await messageController.create(socket.request, serverId, text);
@@ -81,7 +85,9 @@ const handleIO = (io: SocketIO.Server) => (socket: SocketInterface) => {
   };
 
   const disconnectedEvent = () => {
-    socket.to(socket.lastRoom).emit('userTypingEnded', socket.request.session.user);
+    socket
+      .to(socket.lastRoom)
+      .emit('userTypingEnded', socket.request.session.user);
     socket.to(socket.lastRoom).emit('userLeft', socket.request.session.user);
 
     // eslint-disable-next-line no-param-reassign

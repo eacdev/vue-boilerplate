@@ -1,6 +1,8 @@
 <template>
   <div class="container flex mx-auto mt-5 text-gray-darker">
-    <div class="w-full max-w-sm px-8 pt-6 pb-8 mx-auto mb-4 bg-white rounded shadow md:max-w-md">
+    <div
+      class="w-full max-w-sm px-8 pt-6 pb-8 mx-auto mb-4 bg-white rounded shadow md:max-w-md"
+    >
       <h1 class="mb-4 text-lg subpixel-antialiased font-semibold text-center">
         Welcome Back!
       </h1>
@@ -19,7 +21,9 @@
             minlength="5"
             type="username"
           />
-          <small v-if="usernameError" class="mt-3 font-bold text-red-500">{{ usernameError }}</small>
+          <small v-if="usernameError" class="mt-3 font-bold text-red-500">{{
+            usernameError
+          }}</small>
         </div>
         <div class="mb-6">
           <label class="block mb-2 text-sm font-bold" for="password">
@@ -35,7 +39,9 @@
             minlength="8"
             type="password"
           />
-          <small v-if="passwordError" class="mt-3 font-bold text-red-500">{{ passwordError }}</small>
+          <small v-if="passwordError" class="mt-3 font-bold text-red-500">{{
+            passwordError
+          }}</small>
         </div>
 
         <div class="flex items-center justify-between">

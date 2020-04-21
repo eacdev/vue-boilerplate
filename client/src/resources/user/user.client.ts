@@ -1,5 +1,5 @@
-import { AxiosRequestConfig, AxiosResponse } from "axios";
-import BaseClient from "../base/base.client";
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import BaseClient from '../base/base.client';
 
 export default class UserClient extends BaseClient {
   /**
@@ -10,9 +10,9 @@ export default class UserClient extends BaseClient {
       baseURL: `http://localhost:8080/users`,
       withCredentials: true,
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
     };
     super(options);
   }
