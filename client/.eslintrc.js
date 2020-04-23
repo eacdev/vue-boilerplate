@@ -1,16 +1,13 @@
 module.exports = {
   root: true,
   parser: 'vue-eslint-parser',
+  ignorePatterns: ['webpack.config.js'],
   parserOptions: {
     parser: '@typescript-eslint/parser'
   },
   extends: [
-    'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:vue/recommended',
+    'plugin:vue/essential',
     'plugin:prettier/recommended'
-  ],
-  rules: {
-    'vue/component-tags-order': 'off'
-  }
+  ]
 };

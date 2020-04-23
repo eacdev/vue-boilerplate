@@ -42,7 +42,7 @@ export default class User extends Model<User> {
   messages: Message[];
 
   @BeforeCreate
-  static async hashPassword(instance: User) {
+  static async hashPassword(instance: User): Promise<void> {
     // eslint-disable-next-line no-param-reassign
     instance.password = await bcrypt.hash(instance.password, 12);
   }
@@ -52,8 +52,8 @@ export default class User extends Model<User> {
   }
 
   // Remove password attribute when model is converted to JSON.
-  toJSON() {
-    const attributes = <User>{ ...this.get() };
+  toJSON(): User {
+    const attributes = { ...this.get() } as User;
     delete attributes.password;
     return attributes;
   }

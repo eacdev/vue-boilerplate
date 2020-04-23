@@ -6,7 +6,7 @@ import app from './app';
 import database from './sequelize';
 import handleIO from './resources/socket/socket.controller';
 
-(async () => {
+(async (): Promise<void> => {
   await database.sync();
 
   const port = process.env.SERVER_PORT;

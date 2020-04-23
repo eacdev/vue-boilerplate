@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start:api": "ts-node-dev api/src",
-    "start:client": "webpack-dev-server --hot",
+    "start:client": "webpack-dev-server --config client/webpack.config.js --mode development --hot",
     "build": "cross-env NODE_ENV=production webpack"
   },
   "browserslist": [

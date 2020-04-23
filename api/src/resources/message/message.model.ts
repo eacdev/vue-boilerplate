@@ -36,8 +36,8 @@ export default class Message extends Model<Message> {
   // Remove password attribute when model is converted to JSON.
   // We have to do this because sequelize doesn't recursively call toJSON.
   // https://github.com/sequelize/sequelize/issues/3891
-  toJSON() {
-    const attributes = <Message>{ ...this.get() };
+  toJSON(): Message {
+    const attributes = { ...this.get() } as Message;
     delete attributes.user.password;
     return attributes;
   }

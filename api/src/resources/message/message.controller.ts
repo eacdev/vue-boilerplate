@@ -7,7 +7,7 @@ export const index = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): Promise<void> => {
   // todo: Add permission check? + validation
   try {
     const serverMessages: Message[] = await Message.findAll({
@@ -23,7 +23,11 @@ export const index = async (
 };
 
 // todo: don't pass arguments individually?
-export const create = async (req: Request, serverId: number, text: String) => {
+export const create = async (
+  req: Request,
+  serverId: number,
+  text: string
+): Promise<Message> => {
   // todo: Add permission check? + validation
   try {
     // todo: what if not found?

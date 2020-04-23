@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import User from '../user/user.model';
 import logger from '../../logger';
 
-export const me = async (req: Request, res: Response) => {
+export const me = async (req: Request, res: Response): Promise<void> => {
   if (req.session.user) {
     res.send(req.session.user);
   } else {
@@ -14,7 +14,7 @@ export const register = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): Promise<void> => {
   try {
     const user: User = await User.create(req.body);
     req.session.user = user;
@@ -28,7 +28,7 @@ export const login = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): Promise<void> => {
   try {
     // todo: Make user object more complete by including the servers a user is in
     // That means also updating the session whenever a user joins a new server or other actions.
@@ -60,7 +60,7 @@ export const logout = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): Promise<void> => {
   req.session.destroy(e => {
     next(e);
   });

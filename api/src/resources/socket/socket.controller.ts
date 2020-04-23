@@ -6,7 +6,7 @@ import logger from '../../logger';
 import { leaveRooms, joinRoom } from './socket.utils';
 import * as messageController from '../message/message.controller';
 
-const handleIO = (io: SocketIO.Server) => (socket: SocketInterface) => {
+const handleIO = (io: SocketIO.Server) => (socket: SocketInterface): void => {
   /**
    *
    * @param serverId Id of the server to send the message to.
@@ -17,7 +17,7 @@ const handleIO = (io: SocketIO.Server) => (socket: SocketInterface) => {
     serverId: number,
     text: string,
     roomName: string
-  ) => {
+  ): Promise<void> => {
     let message;
     try {
       message = await messageController.create(socket.request, serverId, text);
@@ -43,7 +43,7 @@ const handleIO = (io: SocketIO.Server) => (socket: SocketInterface) => {
    * Join a room.
    * @param newRoom The room id to join.
    */
-  const joinRoomEvent = async (newRoom: string) => {
+  const joinRoomEvent = async (newRoom: string): Promise<void> => {
     try {
       await leaveRooms(socket);
       await joinRoom(socket, newRoom);
@@ -76,15 +76,15 @@ const handleIO = (io: SocketIO.Server) => (socket: SocketInterface) => {
     socket.to(newRoom).emit('userJoined', socket.request.session.user);
   };
 
-  const userTypingStartedEvent = (room: string) => {
+  const userTypingStartedEvent = (room: string): void => {
     socket.to(room).emit('userTypingStarted', socket.request.session.user);
   };
 
-  const userTypingEndedEvent = (room: string) => {
+  const userTypingEndedEvent = (room: string): void => {
     socket.to(room).emit('userTypingEnded', socket.request.session.user);
   };
 
-  const disconnectedEvent = () => {
+  const disconnectedEvent = (): void => {
     socket
       .to(socket.lastRoom)
       .emit('userTypingEnded', socket.request.session.user);

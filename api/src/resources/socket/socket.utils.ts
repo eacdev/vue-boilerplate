@@ -9,7 +9,7 @@ import logger from '../../logger';
  * @param socket The socket we want to act on.
  * @param room The room id that we want to leave.
  */
-const leaveRoom = (socket: SocketInterface, room: string) => {
+const leaveRoom = (socket: SocketInterface, room: string): Promise<void> => {
   return new Promise(resolve => {
     socket.leave(room, () => {
       socket.to(room).emit('userTypingEnded', socket.request.session.user);
@@ -29,7 +29,7 @@ const leaveRoom = (socket: SocketInterface, room: string) => {
  * Leave all rooms the socket is in except the default room.
  * @param socket Socket we want to act on.
  */
-export const leaveRooms = async (socket: SocketInterface) => {
+export const leaveRooms = async (socket: SocketInterface): Promise<void> => {
   for (const room in socket.rooms) {
     // If it's not the private room.
     if (room !== socket.id) {
@@ -46,7 +46,10 @@ export const leaveRooms = async (socket: SocketInterface) => {
  * @param socket The socket we want to act on.
  * @param room The room id that we want to join.
  */
-export const joinRoom = (socket: SocketInterface, room: string) => {
+export const joinRoom = (
+  socket: SocketInterface,
+  room: string
+): Promise<void> => {
   return new Promise(resolve => {
     socket.join(room, () => {
       // eslint-disable-next-line no-param-reassign
