@@ -6,7 +6,8 @@ let config = {
   entry: './client/src/main.ts',
   devServer: {
     publicPath: '/',
-    contentBase: path.join(__dirname, 'public')
+    contentBase: path.join(__dirname, 'public'),
+    historyApiFallback: true
   },
   output: {
     path: path.resolve(__dirname, 'public'),
