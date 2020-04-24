@@ -48,14 +48,14 @@ export default class Chat extends Vue {
 
   chatInputMessage = '';
 
-  get usersTypingNotification() {
+  get usersTypingNotification(): string {
     if (this.usersTyping.length === 0) return '';
     return `${this.usersTyping.map(user => user.username).join(', ')} ${
       this.usersTyping.length === 1 ? 'is' : 'are'
     } typing...`;
   }
 
-  addMessage() {
+  addMessage(): void {
     // todo: Improvement, maybe server name isn't the best way to identify rooms
     this.$socket.emit(
       'newMessage',
@@ -64,17 +64,16 @@ export default class Chat extends Vue {
       this.$store.state.currentServer.name
     );
 
-    console.log(this.$store.state);
-
     this.chatInputMessage = '';
   }
 
-  handleKeypress() {
+  handleKeypress(): void {
     this.debounceTypingStarted();
     this.debounceTypingEnded();
   }
 
   debounceTypingStarted = debounce(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function(this: any) {
       this.$socket.emit(
         'userTypingStarted',
@@ -86,6 +85,7 @@ export default class Chat extends Vue {
   );
 
   debounceTypingEnded = debounce(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function(this: any) {
       this.$socket.emit(
         'userTypingEnded',

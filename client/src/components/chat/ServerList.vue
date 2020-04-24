@@ -29,7 +29,7 @@ export default class ServerList extends Vue {
   })
   private servers!: Server[];
 
-  joinServer(server: Server) {
+  joinServer(server: Server): void {
     this.$emit('join-server', server);
   }
 }

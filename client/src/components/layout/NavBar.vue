@@ -38,7 +38,7 @@ import AuthClient from '../../resources/auth/auth.client';
 export default class NavBar extends Vue {
   authClient!: AuthClient;
 
-  async logout() {
+  async logout(): Promise<void> {
     try {
       await this.authClient.logout();
 
@@ -50,7 +50,7 @@ export default class NavBar extends Vue {
     }
   }
 
-  mounted() {
+  mounted(): void {
     this.authClient = new AuthClient();
   }
 }

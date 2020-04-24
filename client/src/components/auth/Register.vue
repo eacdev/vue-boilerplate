@@ -60,9 +60,6 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
-import Store from 'vuex';
-import Router from 'vue-router';
-
 import AuthClient from '../../resources/auth/auth.client';
 import ErrorResponse from '../../resources/base/error.response';
 
@@ -101,7 +98,7 @@ export default class Register extends Vue {
     }
   }
 
-  mounted() {
+  mounted(): void {
     this.authClient = new AuthClient();
   }
 }

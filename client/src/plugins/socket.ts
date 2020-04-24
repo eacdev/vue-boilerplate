@@ -8,7 +8,7 @@ export default class VueSocketIO {
     this.io = this.connect();
   }
 
-  install(Vue: VueConstructor) {
+  install(Vue: VueConstructor): void {
     // eslint-disable-next-line no-param-reassign
     Vue.prototype.$socket = this.io;
   }

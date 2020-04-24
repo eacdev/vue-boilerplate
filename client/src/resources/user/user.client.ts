@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosRequestConfig } from 'axios';
 import BaseClient from '../base/base.client';
 
 export default class UserClient extends BaseClient {
@@ -16,6 +16,4 @@ export default class UserClient extends BaseClient {
     };
     super(options);
   }
-
-  // placeholder
 }

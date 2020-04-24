@@ -60,9 +60,6 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
-import Store from 'vuex';
-import Router from 'vue-router';
-
 import SocketIOClient from 'socket.io-client';
 
 import AuthClient from '../../resources/auth/auth.client';
@@ -111,7 +108,7 @@ export default class Login extends Vue {
     }
   }
 
-  mounted() {
+  mounted(): void {
     this.authClient = new AuthClient();
   }
 }

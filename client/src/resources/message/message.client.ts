@@ -1,6 +1,5 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import BaseClient from '../base/base.client';
-import Server from '../server/server.model';
 import Message from './message.model';
 
 export default class MessageClient extends BaseClient {

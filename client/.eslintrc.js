@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   parser: 'vue-eslint-parser',
-  ignorePatterns: ['webpack.config.js'],
+  ignorePatterns: ['webpack.config.js', '*.css'],
   parserOptions: {
     parser: '@typescript-eslint/parser'
   },

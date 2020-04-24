@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue, { VNode } from 'vue';
 import Vuex from 'vuex';
 import VueRouter, { RawLocation, Route, RouteConfig } from 'vue-router';
 
@@ -26,26 +26,25 @@ const store = new Vuex.Store({
     currentServer: undefined
   },
   mutations: {
-    setCurrentUser(state, user) {
+    setCurrentUser(state, user): void {
       state.currentUser = user;
     },
-    setCurrentServer(state, server) {
+    setCurrentServer(state, server): void {
       state.currentServer = server;
     }
   }
 });
 
-async function getCurrentUser() {
-  const response = await new AuthClient().me();
-  store.commit('setCurrentUser', response.data);
-}
-
 async function isAuthenticated<V extends Vue = Vue>(
   to: Route,
   from: Route,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   next: (to?: RawLocation | false | ((vm: V) => any) | void) => void
-) {
-  await getCurrentUser();
+): Promise<void> {
+  const response = await new AuthClient().me();
+  if (response.data) {
+    store.commit('setCurrentUser', response.data);
+  }
   if (store.state.currentUser) {
     next();
   } else {
@@ -73,5 +72,5 @@ const router = new VueRouter({
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h): VNode => h(App)
 }).$mount('#app');

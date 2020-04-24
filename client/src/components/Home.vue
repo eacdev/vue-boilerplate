@@ -53,7 +53,7 @@ export default class Home extends Vue {
 
   usersTyping: User[] = [];
 
-  async joinServer(server: Server) {
+  async joinServer(server: Server): Promise<void> {
     // todo: Improvement, maybe server name isn't the best way to identify rooms
     this.$store.commit('setCurrentServer', server);
 
@@ -66,7 +66,7 @@ export default class Home extends Vue {
     ).data;
   }
 
-  async created() {
+  async created(): Promise<void> {
     this.MessageClient = new MessageClient();
     this.ServerClient = new ServerClient();
 
@@ -113,8 +113,7 @@ export default class Home extends Vue {
     await this.joinServer(this.servers[0]);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  beforeDestroy() {
+  beforeDestroy(): void {
     this.$socket.disconnect();
   }
 }
