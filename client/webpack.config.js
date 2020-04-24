@@ -4,7 +4,6 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 let config = {
   entry: './client/src/main.ts',
-  devtool: 'inline-source-map',
   devServer: {
     publicPath: '/',
     contentBase: path.join(__dirname, 'public')
@@ -19,14 +18,6 @@ let config = {
   },
   module: {
     rules: [
-      {
-        test: /\.ts$/,
-        enforce: 'pre',
-        loader: 'eslint-loader',
-        options: {
-          configFile: './client/.eslintrc.js'
-        }
-      },
       {
         test: /\.ts$/,
         loader: 'babel-loader',
@@ -45,7 +36,7 @@ let config = {
         loader: 'vue-loader'
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.(sass|scss)$/i,
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
