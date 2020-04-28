@@ -7,11 +7,11 @@
       :usersTyping="usersTyping"
     ></Chat>
     <ServerList
-      class="order-first p-4 flex-fixed bg-gray-darker"
+      class="order-first bg-white flex-fixed"
       :servers="servers"
       @join-server="joinServer"
     ></ServerList>
-    <UserList class="p-4 flex-fixed bg-gray-darker" :users="users"></UserList>
+    <UserList class="p-4 bg-white flex-fixed" :users="users"></UserList>
   </div>
 </template>
 
