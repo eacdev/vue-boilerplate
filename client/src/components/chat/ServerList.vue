@@ -2,7 +2,7 @@
   <div>
     <div class="p-8">
       <div
-        class="text-3xl font-bold cursor-pointer font-title text-indigo-dark"
+        class="text-3xl font-semibold cursor-pointer font-title text-indigo-dark"
       >
         Chat!
       </div>
@@ -27,6 +27,12 @@
       >
         <span class="mr-2">#</span>
         {{ server.name }}
+        <div
+          v-if="server.id === $store.state.currentServer.id"
+          class="flex items-center justify-center w-3 h-3 p-2 ml-3 text-xs text-white rounded-full bg-red"
+        >
+          1
+        </div>
       </div>
     </div>
   </div>
