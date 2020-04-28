@@ -23,7 +23,7 @@ module.exports = {
         red: '#FE346E'
       },
       flex: {
-        fixed: '0 0 20em'
+        fixed: '0 0 15em'
       }
     }
   },
