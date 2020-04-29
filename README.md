@@ -25,23 +25,8 @@ git clone https://github.com/eacdev/vue-boilerplate
 ```
 
 ```
-# Set to production when deploying to production
-NODE_ENV=development
-
-# Node.js server configuration
-SERVER_PORT=8080
-
-# Postgres configuration
-DB_HOST=localhost
-DB_USER=user
-DB_PASS=pass
-DB_DATABASE=database
-DB_PORT=5432
-
-SECRET=yoursecret
+Rename .env.example to .env and fill in the configuration.
 ```
-* Place this .env file in the project root.
-* Note: server address must be localhost:8080 as it is hardcoded atm (change it in *.client.ts files)
 
 ```
 npm install
@@ -61,6 +46,8 @@ Now you can go to `localhost:8081` and see your app!
 - [ ] Path aliases (@, ~, etc.)
 - [ ] Implement support for TailwindCSS's @apply in scoped scss.
 - [ ] Fix small bugs in the example application.
+- [ ] Implement support for customizing API address (currently hardcoded in *.client.ts files.)
+- [ ] Client/ and api/ folders should have their own .env files.
 
 ## Contributing
 Pull requests are welcome. Please open an issue to discuss.
