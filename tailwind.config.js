@@ -22,6 +22,10 @@ module.exports = {
         blue: '#4298FE',
         red: '#FE346E'
       },
+      borderWidth: {
+        ...defaultTheme.borderWidth,
+        '1': '1px'
+      },
       flex: {
         fixed: '0 0 15em'
       }

@@ -1,10 +1,11 @@
 <template>
   <!-- TODO: Make chat reusable, put message list and chat bar in their own components. -->
   <div class="box-border flex flex-col h-full">
-    <div class="w-full h-12 bg-blue">This is the server name.</div>
+    <ServerInfo />
 
     <!-- Whatever is in this div. should scroll. -->
-    <div class="flex flex-col flex-1 pb-3 overflow-auto">
+    <!-- TODO What if distance between scroll and sidebar? -->
+    <div class="flex flex-col flex-1 px-10 py-3 pt-0 overflow-auto">
       <ul class="flex flex-col justify-end flex-1">
         <li class="mt-3" v-for="message in messages" :key="message.id">
           <strong>{{ message.user.username }}</strong
@@ -16,7 +17,7 @@
     <input
       type="text"
       placeholder="Enter a message"
-      class="p-3 rounded bg-gray-light focus:outline-none"
+      class="p-5 mx-10 mb-3 rounded bg-gray-light focus:outline-none"
       id="chatInput"
       v-model="chatInputMessage"
       @keypress="handleKeypress"
@@ -32,10 +33,16 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 
 import { debounce } from 'lodash';
 
+import ServerInfo from '../chat/ServerInfo.vue';
+
 import User from '../../resources/user/user.model';
 import Message from '../../resources/message/message.model';
 
-@Component
+@Component({
+  components: {
+    ServerInfo
+  }
+})
 export default class Chat extends Vue {
   $socket!: SocketIOClient.Socket;
 
