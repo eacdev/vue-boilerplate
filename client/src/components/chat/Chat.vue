@@ -92,8 +92,6 @@ export default class Chat extends Vue {
     );
 
     this.chatInputMessage = '';
-    const element = document.getElementById('messagesContainer');
-    element.scrollTop = element.scrollHeight;
   }
 
   handleKeypress(): void {
@@ -124,11 +122,6 @@ export default class Chat extends Vue {
     3000,
     { leading: false }
   );
-
-  mounted(): void {
-    const element = document.getElementById('messagesContainer');
-    element.scrollTop = element.scrollHeight;
-  }
 }
 </script>
 
