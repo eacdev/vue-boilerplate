@@ -25,6 +25,10 @@ git clone https://github.com/eacdev/vue-boilerplate
 ```
 
 ```
+Rename .env.example to .env and fill in the configuration.
+```
+
+```
 npm install
 ```
 
@@ -42,6 +46,8 @@ Now you can go to `localhost:8081` and see your app!
 - [ ] Path aliases (@, ~, etc.)
 - [ ] Implement support for TailwindCSS's @apply in scoped scss.
 - [ ] Fix small bugs in the example application.
+- [ ] Implement support for customizing API address (currently hardcoded in *.client.ts files.)
+- [ ] Client/ and api/ folders should have their own .env files.
 
 ## Contributing
 Pull requests are welcome. Please open an issue to discuss.
