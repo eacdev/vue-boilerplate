@@ -1,17 +1,22 @@
 <template>
   <!-- TODO: Make chat reusable, put message list and chat bar in their own components. -->
   <div class="box-border flex flex-col h-full">
-    <ul class="flex flex-col justify-end flex-1">
-      <li class="mt-3" v-for="message in messages" :key="message.id">
-        <strong>{{ message.user.username }}</strong
-        >: {{ message.text }}
-      </li>
-    </ul>
+    <div class="w-full h-12 bg-blue">This is the server name.</div>
+
+    <!-- Whatever is in this div. should scroll. -->
+    <div class="flex flex-col flex-1 pb-3 overflow-auto">
+      <ul class="flex flex-col justify-end flex-1">
+        <li class="mt-3" v-for="message in messages" :key="message.id">
+          <strong>{{ message.user.username }}</strong
+          >: {{ message.text }}
+        </li>
+      </ul>
+    </div>
 
     <input
       type="text"
       placeholder="Enter a message"
-      class="p-3 mt-5 rounded bg-gray-light focus:outline-none"
+      class="p-3 rounded bg-gray-light focus:outline-none"
       id="chatInput"
       v-model="chatInputMessage"
       @keypress="handleKeypress"
