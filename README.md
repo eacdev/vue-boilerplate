@@ -24,7 +24,6 @@ extend and customize the project.
 git clone https://github.com/eacdev/vue-boilerplate
 ```
 
-Create .env in project root
 ```
 # Set to production when deploying to production
 NODE_ENV=development
@@ -41,6 +40,8 @@ DB_PORT=5432
 
 SECRET=yoursecret
 ```
+* Place this .env file in the project root.
+* Note: server address must be localhost:8080 as it is hardcoded atm (change it in *.client.ts files)
 
 ```
 npm install
