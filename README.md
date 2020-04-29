@@ -36,6 +36,8 @@ npm run start:api
 npm run start:client
 ```
 
+Now you can go to `localhost:8081` and see your app!
+
 ## To do
 - [ ] Path aliases (@, ~, etc.)
 - [ ] Implement support for TailwindCSS's @apply in scoped scss.
