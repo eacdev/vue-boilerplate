@@ -1,17 +1,32 @@
 <template>
-  <!-- TODO: Make chat reusable, put message list and chat bar in their own components. -->
   <div class="box-border flex flex-col h-full">
     <ServerInfo />
 
     <!-- Whatever is in this div. should scroll. -->
     <!-- TODO What if distance between scroll and sidebar? -->
-    <div class="flex flex-col flex-1 px-10 py-3 pt-0 overflow-auto">
-      <ul class="flex flex-col justify-end flex-1">
-        <li class="mt-3" v-for="message in messages" :key="message.id">
-          <strong>{{ message.user.username }}</strong
-          >: {{ message.text }}
-        </li>
-      </ul>
+    <div class="flex flex-col-reverse flex-1 px-20 py-3 overflow-auto">
+      <div
+        class="flex flex-col justify-end flex-1 space-y-3"
+        id="messagesContainer"
+      >
+        <div
+          class="self-start max-w-md p-6 rounded-lg bg-gray-darker"
+          :class="[
+            {
+              'self-end rounded-br-none bg-blue text-white':
+                message.user.id === $store.state.currentUser.id
+            },
+            {
+              'self-start rounded-bl-none':
+                message.user.id !== $store.state.currentUser.id
+            }
+          ]"
+          v-for="message in messages"
+          :key="message.id"
+        >
+          {{ message.text }}
+        </div>
+      </div>
     </div>
 
     <input
@@ -77,6 +92,8 @@ export default class Chat extends Vue {
     );
 
     this.chatInputMessage = '';
+    const element = document.getElementById('messagesContainer');
+    element.scrollTop = element.scrollHeight;
   }
 
   handleKeypress(): void {
@@ -107,6 +124,11 @@ export default class Chat extends Vue {
     3000,
     { leading: false }
   );
+
+  mounted(): void {
+    const element = document.getElementById('messagesContainer');
+    element.scrollTop = element.scrollHeight;
+  }
 }
 </script>
 
