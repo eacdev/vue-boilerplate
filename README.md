@@ -25,6 +25,25 @@ git clone https://github.com/eacdev/vue-boilerplate
 ```
 
 ```
+# Set to production when deploying to production
+NODE_ENV=development
+
+# Node.js server configuration
+SERVER_PORT=8080
+
+# Postgres configuration
+DB_HOST=localhost
+DB_USER=user
+DB_PASS=pass
+DB_DATABASE=database
+DB_PORT=5432
+
+SECRET=yoursecret
+```
+* Place this .env file in the project root.
+* Note: server address must be localhost:8080 as it is hardcoded atm (change it in *.client.ts files)
+
+```
 npm install
 ```
 
