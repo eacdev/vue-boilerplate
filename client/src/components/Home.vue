@@ -1,17 +1,13 @@
 <template>
   <!-- https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/ -->
   <div class="flex h-full">
-    <Chat
-      class="flex-1 p-3"
-      :messages="messages"
-      :usersTyping="usersTyping"
-    ></Chat>
+    <Chat class="flex-1" :messages="messages" :usersTyping="usersTyping"></Chat>
     <ServerList
       class="order-first bg-white flex-fixed"
       :servers="servers"
       @join-server="joinServer"
     ></ServerList>
-    <UserList class="p-4 bg-white flex-fixed" :users="users"></UserList>
+    <UserList class="bg-white flex-fixed" :users="users"></UserList>
   </div>
 </template>
 
