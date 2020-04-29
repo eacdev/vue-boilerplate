@@ -24,6 +24,24 @@ extend and customize the project.
 git clone https://github.com/eacdev/vue-boilerplate
 ```
 
+Create .env in project root
+```
+# Set to production when deploying to production
+NODE_ENV=development
+
+# Node.js server configuration
+SERVER_PORT=8080
+
+# Postgres configuration
+DB_HOST=localhost
+DB_USER=user
+DB_PASS=pass
+DB_DATABASE=database
+DB_PORT=5432
+
+SECRET=yoursecret
+```
+
 ```
 npm install
 ```
