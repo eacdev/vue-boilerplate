@@ -23,7 +23,7 @@
           { 'text-black active': server.id === $store.state.currentServer.id },
           { 'text-gray-muted': server.id !== $store.state.currentServer.id }
         ]"
-        class="relative flex items-center p-3 pl-8 font-bold cursor-pointer server-wrapper align-center hover:text-black"
+        class="flex items-center p-3 pl-8 font-bold cursor-pointer server-wrapper align-center hover:text-black"
       >
         <span class="mr-2">#</span>
         {{ server.name }}
@@ -57,6 +57,10 @@ export default class ServerList extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.server-wrapper {
+  position: relative;
+}
+
 .server-wrapper::before {
   content: '';
   left: 0;

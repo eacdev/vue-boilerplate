@@ -1,10 +1,10 @@
 <template>
-  <div class="w-full px-10 pt-20">
+  <div class="flex flex-col justify-between h-32 px-10 pt-12">
     <h1 class="text-2xl font-bold">{{ $store.state.currentServer.name }}</h1>
     <div
-      class="flex flex-row justify-start my-3 text-lg space-x-3 text-gray-muted"
+      class="flex flex-row justify-start my-4 space-x-3 text-lg text-gray-muted"
     >
-      <div class="flex flex-row items-center align-baseline space-x-1">
+      <div class="flex flex-row items-center space-x-1 align-baseline">
         <div class="w-6 h-6">
           <svg
             fill="none"
@@ -21,7 +21,7 @@
         </div>
         <span>2</span>
       </div>
-      <div class="flex flex-row items-center align-baseline space-x-1">
+      <div class="flex flex-row items-center space-x-1 align-baseline">
         <div class="w-6 h-6">
           <svg
             fill="none"
