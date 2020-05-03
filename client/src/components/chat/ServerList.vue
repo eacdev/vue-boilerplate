@@ -27,12 +27,6 @@
       >
         <span class="mr-2">#</span>
         {{ server.name }}
-        <div
-          v-if="server.id === $store.state.currentServer.id"
-          class="flex items-center justify-center w-3 h-3 p-2 ml-3 text-xs text-white rounded-full bg-red"
-        >
-          9
-        </div>
       </div>
     </div>
   </div>

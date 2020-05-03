@@ -2,18 +2,24 @@
   <div>
     <div class="flex flex-col justify-between h-32 pt-20 bg-gray">
       <div class="h-full">
-        <p class="inline-block h-full text-xl font-bold tab">Users</p>
+        <p class="inline-block h-full px-5 text-xl font-bold tab">Users</p>
       </div>
     </div>
-    <ul>
-      <li
-        v-for="user of users"
-        :key="user.id"
-        class="cursor-pointer hover:text-indigo"
+    <div class="p-5 space-y-2">
+      <span class="text-sm font-semibold uppercase text-gray-muted"
+        >Online</span
       >
-        <span class="indicator-online"></span> {{ user.username }}
-      </li>
-    </ul>
+      <ul>
+        <li
+          v-for="user of users"
+          :key="user.id"
+          class="cursor-pointer hover:text-indigo"
+        >
+          <span class="mr-1 indicator-online"></span>
+          {{ user.username }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -39,7 +45,6 @@ export default class UserList extends Vue {
   height: 0.5em;
   border-radius: 50%;
 }
-
 .tab {
   position: relative;
 }
