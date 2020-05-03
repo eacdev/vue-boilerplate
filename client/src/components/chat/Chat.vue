@@ -1,14 +1,14 @@
 <template>
-  <div class="box-border flex flex-col h-full">
+  <div class="box-border flex flex-col h-full pr-2">
     <ServerInfo />
 
     <!-- Whatever is in this div. should scroll. -->
     <!-- TODO What if distance between scroll and sidebar? -->
-    <div class="flex flex-col-reverse flex-1 px-20 py-3 overflow-auto">
-      <div
-        class="flex flex-col justify-end flex-1 space-y-3"
-        id="messagesContainer"
-      >
+    <div
+      class="flex flex-col-reverse flex-1 px-20 py-3 overflow-auto"
+      id="messageContainer"
+    >
+      <div class="flex flex-col justify-end flex-1 space-y-3">
         <div
           class="self-start max-w-md p-6 rounded-lg bg-gray-darker"
           :class="[
@@ -125,4 +125,19 @@ export default class Chat extends Vue {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+#messageContainer::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #e3eaf2;
+}
+
+#messageContainer::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+#messageContainer::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #c4c4c4;
+}
+</style>
