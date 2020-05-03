@@ -5,12 +5,12 @@
     <!-- Whatever is in this div. should scroll. -->
     <!-- TODO What if distance between scroll and sidebar? -->
     <div
-      class="flex flex-col-reverse flex-1 px-20 py-3 overflow-auto"
+      class="flex flex-col-reverse flex-1 px-10 py-3 overflow-auto"
       id="messageContainer"
     >
       <div class="flex flex-col justify-end flex-1 space-y-3">
         <div
-          class="self-start max-w-md p-6 rounded-lg bg-gray-darker"
+          class="max-w-md p-6 rounded-lg bg-gray-darker"
           :class="[
             {
               'self-end rounded-br-none bg-blue text-white':
@@ -26,6 +26,9 @@
         >
           {{ message.text }}
         </div>
+        <TypingIndicator class="max-w-md" v-if="usersTyping.length > 0">
+          <span class="text-gray-muted">{{ usersTypingNotification }}</span>
+        </TypingIndicator>
       </div>
     </div>
 
@@ -38,8 +41,6 @@
       @keypress="handleKeypress"
       v-on:keyup.enter="addMessage(chatInputMessage)"
     />
-
-    <span>{{ usersTypingNotification }}</span>
   </div>
 </template>
 
@@ -49,13 +50,15 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import { debounce } from 'lodash';
 
 import ServerInfo from '../chat/ServerInfo.vue';
+import TypingIndicator from '../chat/TypingIndicator.vue';
 
 import User from '../../resources/user/user.model';
 import Message from '../../resources/message/message.model';
 
 @Component({
   components: {
-    ServerInfo
+    ServerInfo,
+    TypingIndicator
   }
 })
 export default class Chat extends Vue {
