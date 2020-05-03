@@ -27,7 +27,9 @@
           {{ message.text }}
         </div>
         <TypingIndicator class="max-w-md" v-if="usersTyping.length > 0">
-          <span class="text-gray-muted">{{ usersTypingNotification }}</span>
+          <span class="text-sm text-gray-muted">{{
+            usersTypingNotification
+          }}</span>
         </TypingIndicator>
       </div>
     </div>
@@ -80,6 +82,7 @@ export default class Chat extends Vue {
 
   get usersTypingNotification(): string {
     if (this.usersTyping.length === 0) return '';
+    if (this.usersTyping.length > 2) return 'Several people are typing...';
     return `${this.usersTyping.map(user => user.username).join(', ')} ${
       this.usersTyping.length === 1 ? 'is' : 'are'
     } typing...`;
