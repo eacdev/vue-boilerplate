@@ -8,23 +8,39 @@
       class="flex flex-col-reverse flex-1 px-10 py-3 overflow-auto"
       id="messageContainer"
     >
-      <div class="flex flex-col justify-end flex-1 space-y-3">
+      <div class="flex flex-col justify-end flex-1 space-y-2">
         <div
-          class="max-w-md p-6 rounded-lg bg-gray-darker"
+          class="max-w-md"
           :class="[
-            {
-              'self-end rounded-br-none bg-blue text-white':
-                message.user.id === $store.state.currentUser.id
-            },
-            {
-              'self-start rounded-bl-none':
-                message.user.id !== $store.state.currentUser.id
-            }
+            { 'self-end': message.user.id === $store.state.currentUser.id },
+            { 'self-start': message.user.id !== $store.state.currentUser.id }
           ]"
-          v-for="message in messages"
+          v-for="(message, index) in messages"
           :key="message.id"
         >
-          {{ message.text }}
+          <div
+            class="p-6 rounded-lg bg-gray-darker"
+            :class="[
+              {
+                'rounded-br-none bg-blue text-white':
+                  message.user.id === $store.state.currentUser.id
+              },
+              {
+                'rounded-bl-none':
+                  message.user.id !== $store.state.currentUser.id
+              }
+            ]"
+          >
+            {{ message.text }}
+          </div>
+          <div v-if="messages[index + 1]">
+            <div v-if="messages[index + 1].user.id !== message.user.id">
+              {{ message.user.username }}
+            </div>
+          </div>
+          <div v-if="index === messages.length - 1">
+            {{ message.user.username }}
+          </div>
         </div>
         <TypingIndicator class="max-w-md" v-if="usersTyping.length > 0">
           <span class="text-sm text-gray-muted">{{
