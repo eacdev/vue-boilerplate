@@ -15,6 +15,7 @@ module.exports = {
           dark: '#0D2665'
         },
         gray: {
+          ...defaultTheme.colors.gray,
           default: '#F4F8FB',
           darker: '#E3EAF2',
           muted: '#AAAAAA'
