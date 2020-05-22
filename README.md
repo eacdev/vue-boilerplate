@@ -1,5 +1,5 @@
-# vue-boilerplate
-✨ A user-friendly boilerplate that integrates Webpack, Vue, TypeScript, and TailwindCSS out of the box.
+# vue-chat
+✨ A chat built with TypeScript, Vue, Express & TailwindCSS.
 
 ## Why?
 
@@ -16,12 +16,11 @@ extend and customize the project.
 * Prettier
 * PostCSS, Browserlist, Autoprefixer, etc.
 * Custom webpack configuration for the above
-* Example full-stack chat application built with this boilerplate
 
 ## Getting started
 
 ```
-git clone https://github.com/eacdev/vue-boilerplate
+git clone https://github.com/eacdev/vue-chat
 ```
 
 ```
