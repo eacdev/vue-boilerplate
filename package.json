@@ -2,6 +2,7 @@
   "name": "vue-chat-app",
   "version": "1.0.0",
   "scripts": {
+    "start": "concurrently \"ts-node-dev api/src\" \"webpack-dev-server --config client/webpack.config.js --mode development --hot\"",
     "start:api": "ts-node-dev api/src",
     "start:client": "webpack-dev-server --config client/webpack.config.js --mode development --hot",
     "lint:api": "eslint \"./api/src/**/*\"",
@@ -20,6 +21,7 @@
     "axios": "^0.19.2",
     "bcrypt": "^4.0.1",
     "body-parser": "latest",
+    "concurrently": "^5.2.0",
     "cookie-parser": "latest",
     "cors": "latest",
     "csurf": "latest",

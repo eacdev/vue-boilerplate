@@ -9,9 +9,12 @@
 
       <button
         class="w-full px-4 py-3 mt-5 text-sm font-bold rounded-full bg-indigo-lighter text-indigo"
+        @click="showModal = true"
       >
         + New Server
       </button>
+
+      <CreateServerModal v-if="showModal" @close="showModal = false" />
     </div>
 
     <div class="mt-4">
@@ -36,13 +39,21 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Server from '../../resources/server/server.model';
 
-@Component
+import CreateServerModal from '../chat/CreateServerModal.vue';
+
+@Component({
+  components: {
+    CreateServerModal
+  }
+})
 export default class ServerList extends Vue {
   @Prop({
     type: Array,
     default: () => [{}]
   })
   private servers!: Server[];
+
+  showModal = false;
 
   joinServer(server: Server): void {
     this.$emit('join-server', server);
