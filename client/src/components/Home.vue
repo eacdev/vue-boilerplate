@@ -1,7 +1,6 @@
 <template>
   <!-- https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/ -->
   <div class="flex h-full">
-    <CreateServerModal v-if="showModal" @close="showModal = false" />
     <Chat class="flex-1" :messages="messages" :usersTyping="usersTyping"></Chat>
     <ServerList
       class="order-first bg-white flex-fixed"

@@ -1,5 +1,6 @@
 <template>
   <div class="box-border flex flex-col h-full pr-2">
+    <!-- TODO: only load this if the app's state has been loaded -->
     <ServerInfo />
 
     <!-- Whatever is in this div. should scroll. -->
