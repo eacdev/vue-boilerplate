@@ -6,6 +6,7 @@
       class="order-first bg-white flex-fixed"
       :servers="servers"
       @join-server="joinServer"
+      @create-server="createServer"
     ></ServerList>
     <UserList class="bg-white flex-fixed" :users="users"></UserList>
   </div>
@@ -60,6 +61,12 @@ export default class Home extends Vue {
     this.messages = (
       await this.MessageClient.index(this.$store.state.currentServer.id)
     ).data;
+  }
+
+  createServer(server: Server): void {
+    this.servers.push(server);
+
+    this.joinServer(server);
   }
 
   async created(): Promise<void> {

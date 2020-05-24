@@ -39,6 +39,7 @@ export const create = async (
       where: { id: server.id }
     });
 
+    // todo should taguserserver be included in response?
     await TagUserServer.create({
       userId: req.session.user.id,
       serverId: server.id

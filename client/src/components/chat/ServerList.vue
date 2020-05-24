@@ -14,7 +14,11 @@
         + New Server
       </button>
 
-      <CreateServerModal v-if="showModal" @close="showModal = false" />
+      <CreateServerModal
+        v-if="showModal"
+        @close="showModal = false"
+        @create-server="createServer"
+      />
     </div>
 
     <div class="mt-4">
@@ -53,7 +57,11 @@ export default class ServerList extends Vue {
   })
   private servers!: Server[];
 
-  showModal = true;
+  showModal = false;
+
+  createServer(server: Server): void {
+    this.$emit('create-server', server);
+  }
 
   joinServer(server: Server): void {
     this.$emit('join-server', server);

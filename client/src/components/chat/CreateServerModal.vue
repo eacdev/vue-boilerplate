@@ -74,6 +74,10 @@ export default class CreateServerModal extends Vue {
       const response = await this.serverClient.create({
         name: this.serverName
       });
+
+      this.$emit('create-server', response.data);
+
+      this.close();
     } catch (e) {
       if (!e.response.data.error.errors) {
         this.serverNameError = e.response.data.error.message;
