@@ -21,7 +21,10 @@ module.exports = {
           muted: '#AAAAAA'
         },
         blue: '#4298FE',
-        red: '#FE346E'
+        red: {
+          ...defaultTheme.colors.red,
+          default: '#FE346E'
+        }
       },
       borderWidth: {
         ...defaultTheme.borderWidth,

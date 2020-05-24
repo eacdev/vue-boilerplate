@@ -55,6 +55,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import ServerClient from '../../resources/server/server.client';
+import ErrorResponse from '../../resources/base/error.response';
 
 @Component
 export default class CreateServerModal extends Vue {
@@ -78,6 +79,11 @@ export default class CreateServerModal extends Vue {
         this.serverNameError = e.response.data.error.message;
         return;
       }
+      e.response.data.error.errors.forEach((error: ErrorResponse) => {
+        if (error.path === 'name') {
+          this.serverNameError = error.message;
+        }
+      });
     }
   }
 

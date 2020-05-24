@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import User from '../user/user.model';
 import Server from '../server/server.model';
+import TagUserServer from './taguserserver.model';
 
 export const index = async (
   req: Request,
@@ -17,7 +18,11 @@ export const index = async (
   }
 };
 
-export const create = async (req: Request, res: Response): Promise<void> => {
+export const create = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
   // todo: Add permission check? + validation
   try {
     // todo: what if not found?
@@ -34,8 +39,13 @@ export const create = async (req: Request, res: Response): Promise<void> => {
       where: { id: server.id }
     });
 
+    await TagUserServer.create({
+      userId: req.session.user.id,
+      serverId: server.id
+    });
+
     res.send(server);
   } catch (e) {
-    throw new Error(e);
+    next(e);
   }
 };
