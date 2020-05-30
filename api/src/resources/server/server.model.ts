@@ -23,7 +23,6 @@ export default class Server extends Model<Server> {
   @AllowNull(false)
   @Unique
   @Length({ min: 3, max: 15 })
-  @IsAlphanumeric
   @Column(DataType.STRING)
   name: string;
 
