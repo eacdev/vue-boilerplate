@@ -1,6 +1,8 @@
 # vue-chat
 ✨ A chat built with TypeScript, Vue, Express & TailwindCSS.
 
+![Preview](preview.png)
+
 ## Why?
 
 This project started when I needed Vue + TypeScript application setup that's easy to understand, and minimalist. Most boilerplates
