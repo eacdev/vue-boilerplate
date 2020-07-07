@@ -1,6 +1,7 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import BaseClient from '../base/base.client';
 import Server from './server.model';
+import { CreateServer } from './server.requests';
 
 export default class ServerClient extends BaseClient {
   /**
@@ -23,5 +24,9 @@ export default class ServerClient extends BaseClient {
    */
   public async index(): Promise<AxiosResponse<Server[]>> {
     return this.get();
+  }
+
+  public async create(request: CreateServer): Promise<AxiosResponse<Server>> {
+    return this.post<Server>('', request);
   }
 }

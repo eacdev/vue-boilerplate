@@ -1,7 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import User from '../user/user.model';
+import Server from '../server/server.model';
+import TagUserServer from './taguserserver.model';
 
-const index = async (
+export const index = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -16,4 +18,35 @@ const index = async (
   }
 };
 
-export default index;
+export const create = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  // todo: Add permission check? + validation
+  try {
+    // todo: what if not found?
+    await User.findOne({
+      where: { id: req.session.user.id }
+    });
+
+    let server = await Server.create({
+      userId: req.session.user.id,
+      name: req.body.name
+    });
+
+    server = await Server.findOne({
+      where: { id: server.id }
+    });
+
+    // todo should taguserserver be included in response?
+    await TagUserServer.create({
+      userId: req.session.user.id,
+      serverId: server.id
+    });
+
+    res.send(server);
+  } catch (e) {
+    next(e);
+  }
+};

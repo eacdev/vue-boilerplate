@@ -81,9 +81,6 @@ export default class Login extends Vue {
   $socket: SocketIOClient.Socket;
 
   async login(): Promise<void> {
-    this.usernameError = '';
-    this.passwordError = '';
-
     try {
       const response = await this.authClient.login({
         username: this.username,
@@ -94,6 +91,7 @@ export default class Login extends Vue {
 
       this.$router.push({ name: 'home' });
     } catch (e) {
+      // todo: might not be safe to show errors of any type?
       if (!e.response.data.error.errors) {
         this.usernameError = e.response.data.error.message;
         return;

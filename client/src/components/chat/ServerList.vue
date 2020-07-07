@@ -1,19 +1,41 @@
 <template>
   <div>
-    <div class="mb-4">
-      <p class="mb-1 text-base font-bold">Servers</p>
+    <div class="p-8">
+      <div
+        class="text-3xl font-semibold cursor-pointer font-title text-indigo-dark"
+      >
+        Chat!
+      </div>
+
+      <button
+        class="w-full px-4 py-3 mt-5 text-sm font-bold rounded-full bg-indigo-lighter text-indigo"
+        @click="showModal = true"
+      >
+        + New Server
+      </button>
+
+      <CreateServerModal
+        v-if="showModal"
+        @close="showModal = false"
+        @create-server="createServer"
+      />
     </div>
-    <ul>
-      <li
+
+    <div class="mt-4">
+      <div
         v-for="server of this.servers"
         :key="server.id"
         @click="joinServer(server)"
-        :class="{ 'text-indigo': server.id === $store.state.currentServer.id }"
-        class="cursor-pointer hover:text-indigo"
+        :class="[
+          { 'text-black active': server.id === $store.state.currentServer.id },
+          { 'text-gray-muted': server.id !== $store.state.currentServer.id }
+        ]"
+        class="flex items-center p-3 pl-8 font-bold cursor-pointer server-wrapper align-center hover:text-black"
       >
+        <span class="mr-2">#</span>
         {{ server.name }}
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -21,7 +43,13 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Server from '../../resources/server/server.model';
 
-@Component
+import CreateServerModal from '../chat/CreateServerModal.vue';
+
+@Component({
+  components: {
+    CreateServerModal
+  }
+})
 export default class ServerList extends Vue {
   @Prop({
     type: Array,
@@ -29,8 +57,36 @@ export default class ServerList extends Vue {
   })
   private servers!: Server[];
 
+  showModal = false;
+
+  createServer(server: Server): void {
+    this.$emit('create-server', server);
+  }
+
   joinServer(server: Server): void {
     this.$emit('join-server', server);
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.server-wrapper {
+  position: relative;
+}
+
+.server-wrapper::before {
+  content: '';
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: #7c6bf9;
+  visibility: hidden;
+  position: absolute;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.server-wrapper.active::before {
+  visibility: visible;
+}
+</style>

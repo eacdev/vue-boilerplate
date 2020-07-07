@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col h-screen">
-    <NavBar></NavBar>
+    <!-- <NavBar></NavBar> -->
     <div class="w-full h-full">
       <router-view></router-view>
     </div>

@@ -1,17 +1,19 @@
 <template>
   <!-- https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/ -->
   <div class="flex h-full">
-    <Chat
-      class="flex-1 p-3"
-      :messages="messages"
-      :usersTyping="usersTyping"
-    ></Chat>
+    <Chat class="flex-1" :messages="messages" :usersTyping="usersTyping"></Chat>
+    <InviteModal
+      @close="showInviteModal = false"
+      v-if="showInviteModal"
+      :server="$store.state.currentServer"
+    ></InviteModal>
     <ServerList
-      class="order-first p-4 flex-fixed bg-gray-darker"
+      class="order-first bg-white flex-fixed"
       :servers="servers"
       @join-server="joinServer"
+      @create-server="createServer"
     ></ServerList>
-    <UserList class="p-4 flex-fixed bg-gray-darker" :users="users"></UserList>
+    <UserList class="bg-white flex-fixed" :users="users"></UserList>
   </div>
 </template>
 
@@ -26,6 +28,7 @@ import MessageClient from '../resources/message/message.client';
 import Chat from './chat/Chat.vue';
 import UserList from './chat/UserList.vue';
 import ServerList from './chat/ServerList.vue';
+import InviteModal from './chat/InviteModal.vue';
 
 import User from '../resources/user/user.model';
 import Server from '../resources/server/server.model';
@@ -35,7 +38,8 @@ import Message from '../resources/message/message.model';
   components: {
     Chat,
     UserList,
-    ServerList
+    ServerList,
+    InviteModal
   }
 })
 export default class Home extends Vue {
@@ -53,6 +57,8 @@ export default class Home extends Vue {
 
   usersTyping: User[] = [];
 
+  showInviteModal = false;
+
   async joinServer(server: Server): Promise<void> {
     // todo: Improvement, maybe server name isn't the best way to identify rooms
     this.$store.commit('setCurrentServer', server);
@@ -64,6 +70,16 @@ export default class Home extends Vue {
     this.messages = (
       await this.MessageClient.index(this.$store.state.currentServer.id)
     ).data;
+  }
+
+  async createServer(server: Server): Promise<void> {
+    this.servers.push(server);
+
+    await this.joinServer(server);
+
+    setTimeout(() => {
+      this.showInviteModal = true;
+    }, 1000);
   }
 
   async created(): Promise<void> {

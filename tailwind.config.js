@@ -4,24 +4,34 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
   theme: {
     extend: {
+      fontFamily: {
+        title: ['Poppins'],
+        body: ['Lato']
+      },
       colors: {
-        black: {
-          default: '#23272a'
+        indigo: {
+          default: '#7C6BF9',
+          lighter: '#F0EDFE',
+          dark: '#0D2665'
         },
         gray: {
           ...defaultTheme.colors.gray,
-          default: '#dcddde',
-          light: '#40444b',
-          lighter: '#36393f',
-          darker: '#2f3136'
+          default: '#F4F8FB',
+          darker: '#E3EAF2',
+          muted: '#AAAAAA'
         },
-        indigo: {
-          ...defaultTheme.colors.indigo,
-          default: '#7289da'
+        blue: '#4298FE',
+        red: {
+          ...defaultTheme.colors.red,
+          default: '#FE346E'
         }
       },
+      borderWidth: {
+        ...defaultTheme.borderWidth,
+        '1': '1px'
+      },
       flex: {
-        fixed: '0 0 20em'
+        fixed: '0 0 15em'
       }
     }
   },

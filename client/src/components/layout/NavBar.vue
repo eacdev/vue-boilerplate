@@ -1,7 +1,11 @@
 <template>
   <nav class="flex items-baseline justify-between px-4 py-4 text-white shadow">
     <div class="flex justify-between">
-      <router-link class="text-xl font-bold" to="/home">Chat!</router-link>
+      <router-link
+        class="text-2xl font-bold font-title text-indigo-dark"
+        to="/home"
+        >Chat!</router-link
+      >
     </div>
     <div class="flex">
       <div v-if="$store.state.currentUser">

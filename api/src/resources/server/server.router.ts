@@ -4,7 +4,8 @@ import * as messageController from '../message/message.controller';
 
 const router = Router();
 
-router.get('/', serverController.default);
+router.get('/', serverController.index);
+router.post('/', serverController.create);
 router.get('/:serverId/messages', messageController.index);
 
 export default router;
