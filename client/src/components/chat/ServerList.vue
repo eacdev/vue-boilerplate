@@ -30,10 +30,10 @@
           { 'text-black active': server.id === $store.state.currentServer.id },
           { 'text-gray-muted': server.id !== $store.state.currentServer.id }
         ]"
-        class="flex items-center p-3 pl-8 font-bold cursor-pointer server-wrapper align-center hover:text-black"
+        class="flex items-center p-3 pl-8 font-bold server-wrapper align-center hover:text-black"
       >
         <span class="mr-2">#</span>
-        <div class="flex justify-between w-full">
+        <div class="flex justify-between w-full cursor-pointer">
           {{ server.name }}
           <ServerSettingsModal
             v-if="server.id === $store.state.currentServer.id"
