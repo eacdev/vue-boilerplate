@@ -20,10 +20,12 @@
       v-if="show"
       class="bg-white border border-gray-100 rounded-sm shadow-md cursor-default popover"
     >
-      <div class="flex flex-col w-full px-5 py-3">
-        <div class="w-full space-y-3">
+      <div class="flex flex-col w-full px-3 py-3">
+        <div
+          class="w-full p-2 text-gray-700 rounded-sm cursor-pointer hover:text-indigo"
+        >
           <div
-            class="flex flex-row justify-between subpixel-antialiased text-indigo"
+            class="flex flex-row justify-between subpixel-antialiased font-normal"
           >
             Invite People
             <svg
