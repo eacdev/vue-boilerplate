@@ -31,7 +31,7 @@
             @click="close"
             class="inline-flex justify-center w-full px-4 py-2 text-sm leading-5 text-gray-700 bg-white border border-gray-300 rounded-md"
           >
-            Cancel
+            Done
           </button>
         </span>
       </div>

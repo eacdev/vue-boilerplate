@@ -33,7 +33,12 @@
         class="flex items-center p-3 pl-8 font-bold cursor-pointer server-wrapper align-center hover:text-black"
       >
         <span class="mr-2">#</span>
-        {{ server.name }}
+        <div class="flex justify-between w-full">
+          {{ server.name }}
+          <ServerSettingsModal
+            v-if="server.id === $store.state.currentServer.id"
+          ></ServerSettingsModal>
+        </div>
       </div>
     </div>
   </div>
@@ -44,10 +49,12 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import Server from '../../resources/server/server.model';
 
 import CreateServerModal from '../chat/CreateServerModal.vue';
+import ServerSettingsModal from '../chat/ServerSettingsModal.vue';
 
 @Component({
   components: {
-    CreateServerModal
+    CreateServerModal,
+    ServerSettingsModal
   }
 })
 export default class ServerList extends Vue {
