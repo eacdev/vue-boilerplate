@@ -14,11 +14,7 @@
         + New Server
       </button>
 
-      <CreateServerModal
-        v-if="showModal"
-        @close="showModal = false"
-        @create-server="createServer"
-      />
+      <NewServerModal v-model="showModal" @create-server="createServer" />
     </div>
 
     <div class="mt-4">
@@ -48,12 +44,14 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Server from '../../resources/server/server.model';
 
-import CreateServerModal from '../chat/CreateServerModal.vue';
+import Modal from '../chat/Modal.vue';
+import NewServerModal from '../chat/NewServerModal.vue';
 import ServerSettingsModal from '../chat/ServerSettingsModal.vue';
 
 @Component({
   components: {
-    CreateServerModal,
+    Modal,
+    NewServerModal,
     ServerSettingsModal
   }
 })
