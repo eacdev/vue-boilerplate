@@ -2,11 +2,10 @@
   <!-- https://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/ -->
   <div class="flex h-full">
     <Chat class="flex-1" :messages="messages" :usersTyping="usersTyping"></Chat>
-    <InviteModal
-      @close="showInviteModal = false"
-      v-if="showInviteModal"
+    <InviteFriendsModal
+      v-model="showInviteFriendsModal"
       :server="$store.state.currentServer"
-    ></InviteModal>
+    ></InviteFriendsModal>
     <ServerList
       class="order-first bg-white flex-fixed"
       :servers="servers"
@@ -28,7 +27,7 @@ import MessageClient from '../resources/message/message.client';
 import Chat from './chat/Chat.vue';
 import UserList from './chat/UserList.vue';
 import ServerList from './chat/ServerList.vue';
-import InviteModal from './chat/InviteModal.vue';
+import InviteFriendsModal from './chat/InviteFriendsModal.vue';
 
 import User from '../resources/user/user.model';
 import Server from '../resources/server/server.model';
@@ -39,7 +38,7 @@ import Message from '../resources/message/message.model';
     Chat,
     UserList,
     ServerList,
-    InviteModal
+    InviteFriendsModal
   }
 })
 export default class Home extends Vue {
@@ -57,7 +56,7 @@ export default class Home extends Vue {
 
   usersTyping: User[] = [];
 
-  showInviteModal = false;
+  showInviteFriendsModal = false;
 
   async joinServer(server: Server): Promise<void> {
     // todo: Improvement, maybe server name isn't the best way to identify rooms
@@ -78,7 +77,7 @@ export default class Home extends Vue {
     await this.joinServer(server);
 
     setTimeout(() => {
-      this.showInviteModal = true;
+      this.showInviteFriendsModal = true;
     }, 1000);
   }
 
