@@ -9,13 +9,21 @@
 
       <button
         class="w-full px-4 py-3 mt-5 text-sm font-bold rounded-full bg-indigo-lighter text-indigo"
-        @click="showModal = true"
+        @click="showNewServerModal = true"
       >
         + New Server
       </button>
 
-      <NewServerModal v-model="showModal" @create-server="createServer" />
+      <NewServerModal
+        v-model="showNewServerModal"
+        @create-server="createServer"
+      />
     </div>
+
+    <InviteFriendsModal
+      v-model="showInviteFriendsModal"
+      :server="$store.state.currentServer"
+    ></InviteFriendsModal>
 
     <div class="mt-4">
       <div
@@ -31,9 +39,9 @@
         <span class="mr-2">#</span>
         <div class="flex justify-between w-full cursor-pointer">
           {{ server.name }}
-          <ServerSettingsModal
+          <ServerSettingsPopOver
             v-if="server.id === $store.state.currentServer.id"
-          ></ServerSettingsModal>
+          ></ServerSettingsPopOver>
         </div>
       </div>
     </div>
@@ -45,14 +53,18 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import Server from '../../resources/server/server.model';
 
 import Modal from '../chat/Modal.vue';
-import NewServerModal from '../chat/NewServerModal.vue';
-import ServerSettingsModal from '../chat/ServerSettingsModal.vue';
+
+import NewServerModal from './NewServerModal.vue';
+import InviteFriendsModal from './InviteFriendsModal.vue';
+
+import ServerSettingsPopOver from './ServerSettingsPopOver.vue';
 
 @Component({
   components: {
     Modal,
     NewServerModal,
-    ServerSettingsModal
+    InviteFriendsModal,
+    ServerSettingsPopOver
   }
 })
 export default class ServerList extends Vue {
@@ -62,10 +74,15 @@ export default class ServerList extends Vue {
   })
   private servers!: Server[];
 
-  showModal = false;
+  showNewServerModal = false;
+  showInviteFriendsModal = false;
 
   createServer(server: Server): void {
     this.$emit('create-server', server);
+
+    setTimeout(() => {
+      this.showInviteFriendsModal = true;
+    }, 1000);
   }
 
   joinServer(server: Server): void {

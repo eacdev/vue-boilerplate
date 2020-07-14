@@ -52,7 +52,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class ServerSettingsModal extends Vue {
+export default class ServerSettingsPopOver extends Vue {
   show = false;
 
   toggle(): void {
