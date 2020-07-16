@@ -25,6 +25,7 @@
           class="w-full p-2 text-gray-700 rounded-sm cursor-pointer hover:text-indigo"
         >
           <div
+            @click="showInviteFriendsModal"
             class="flex flex-row justify-between subpixel-antialiased font-normal"
           >
             Invite People
@@ -57,6 +58,12 @@ export default class ServerSettingsPopOver extends Vue {
 
   toggle(): void {
     this.show = !this.show;
+  }
+
+  showInviteFriendsModal(): void {
+    this.show = false;
+
+    this.$emit('invite-friends', true);
   }
 }
 </script>

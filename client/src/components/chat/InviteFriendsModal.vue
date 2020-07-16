@@ -5,7 +5,7 @@
     </template>
     <template v-slot:subtitle>
       By sending this link to your friends, they'll be able to join and have a
-      chat!.
+      chat!
     </template>
     <template v-slot:content>
       <div class="mb-6">

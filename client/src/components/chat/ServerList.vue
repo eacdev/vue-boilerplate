@@ -7,6 +7,8 @@
         Chat!
       </div>
 
+      <WizardModal v-model="showWizardModal" />
+
       <button
         class="w-full px-4 py-3 mt-5 text-sm font-bold rounded-full bg-indigo-lighter text-indigo"
         @click="showNewServerModal = true"
@@ -40,6 +42,7 @@
         <div class="flex justify-between w-full cursor-pointer">
           {{ server.name }}
           <ServerSettingsPopOver
+            @invite-friends="inviteFriends"
             v-if="server.id === $store.state.currentServer.id"
           ></ServerSettingsPopOver>
         </div>
@@ -74,6 +77,7 @@ export default class ServerList extends Vue {
   })
   private servers!: Server[];
 
+  showWizardModal = true;
   showNewServerModal = false;
   showInviteFriendsModal = false;
 
@@ -87,6 +91,10 @@ export default class ServerList extends Vue {
 
   joinServer(server: Server): void {
     this.$emit('join-server', server);
+  }
+
+  inviteFriends(value: boolean): void {
+    this.showInviteFriendsModal = value;
   }
 }
 </script>
